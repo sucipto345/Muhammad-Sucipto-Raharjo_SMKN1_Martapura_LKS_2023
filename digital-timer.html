@@ -7,10 +7,20 @@
     <style>
         .btn-container {
             display: flex;
-            width: 35px;
-            height: 35px;
+            font-family: Arial, Helvetica, sans-serif;
+            justify-content: center;
         }
-        #
+        .btn {
+            text-align: center;
+            font-size: 24px;
+            padding: 10px 20px;
+            margin: 0 5px;
+        }
+        #timer {
+            border: 1px solid;
+            font-size: 74px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -49,9 +59,9 @@
             var formattedTimer = padNumber(seconds, 3) + ":" + padNumber(centiseconds, 2);
             document.getElementById("timer").innerHTML = formattedTimer;
         }
-        function padNumber (num, lenght) {
+        function padNumber (num, length) {
             var paddedNumber = num.toString();
-            while(paddedNumber.lenght < lenght) {
+            while(paddedNumber.length < length) {
                 paddedNumber = "0" + paddedNumber;
             }
             return paddedNumber

@@ -14,7 +14,7 @@
             flex-direction: column;
             align-items: center;
         }
-        
+
         #begin-game {
             display: flex;
             flex-direction: column;
@@ -26,16 +26,22 @@
             height: 600px;
             background-repeat: no-repeat;
         }
-        #play-game button{
+
+        #play-game button {
             height: 70px;
             padding-bottom: 15px;
             margin-left: 5px;
         }
-        #zombie{
-            width: 35px;
-            height: 35px;
-            position: absolute;
-            animation: move-left;
+
+        .cards {
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+            float: left;
+        }
+        .card {
+            width: 100px;
+            height: 100px;
         }
     </style>
 </head>
@@ -46,7 +52,7 @@
         <div id="begin-game">
             <input type="text" placeholder="Input Username" id="username"></input>
             <input placeholder="Select Level" id="level">
-            <select name="choose-dificult"  id="dificult">
+            <select name="choose-dificult" id="dificult">
                 <option value="easy">easy</option>
                 <option value="normal">normal</option>
                 <option value="hard">hard</option>
@@ -65,12 +71,15 @@
         </div>
     </div>
     <div id="play-game" style="display: none;">
-        <div id="button-container">
-            <button id="sunFlower"><img src="/souce/Sprites/Seeds/SunFlowerSeed.png" alt="SunFlowerSeed"></button>
-            <button id="peaShoter"><img src="/souce/Sprites/Seeds/PeaShooterSeed.png" alt="PeaShooterSeed"></button>
-            <button id="icePea"><img src="/souce/Sprites/Seeds/IcePeaSeed.png" alt="IcePeaSeed"></button>
-            <button id="wallNut"><img src="/souce/Sprites/Seeds/WallNutSeed.png" alt="WallNutSeed"></button>
-            <button id="shovel"><img src="/souce/Sprites/General/Shovel.png" alt="shovel"></button>
+        <canvas id="gameCanvas"></canvas>
+        <div class="cards">
+            <img src="/souce/Sprites/Seeds/SunFlowerSeed.png" class="card" draggable="true">
+            <img src="/souce/Sprites/Seeds/PeaShooterSeed.png" class="card" draggable="true">
+            <img src="/souce/Sprites/Seeds/IcePeaSeed.png" class="card" draggable="true">
+            <img src="/souce/Sprites/Seeds/WallNutSeed.png" class="card" draggable="true">
+        </div>
+        <div id="boxesContainer">
+            <!-- Boxes will be dynamically generated here -->
         </div>
         <div id="info-player">
             <div id="player"></div>
@@ -80,48 +89,48 @@
         <div id="zombie" style="display: none;"></div>
     </div>
     <script>
-    var toggleButton = document.getElementById('toggleButton');
-    var instructionButton = document.getElementById('instructionButton');
-    var startGame = document.getElementById('play')
-    var playGame = document.getElementById('play-game')
-    var menuContainer = document.getElementById('container')
-    var zombie = document.getElementById('zombie')
+        var toggleButton = document.getElementById('toggleButton');
+        var instructionButton = document.getElementById('instructionButton');
+        var startGame = document.getElementById('play')
+        var playGame = document.getElementById('play-game')
+        var menuContainer = document.getElementById('container')
+        var zombie = document.getElementById('zombie')
 
 
-    toggleButton.addEventListener('click', function() {
-      if (instructionButton.style.display === 'none') {
-        instructionButton.style.display = 'flex';
-      } else {
-        instructionButton.style.display = 'none';
-      }
-    });
+        toggleButton.addEventListener('click', function () {
+            if (instructionButton.style.display === 'none') {
+                instructionButton.style.display = 'flex';
+            } else {
+                instructionButton.style.display = 'none';
+            }
+        });
 
-    startGame.addEventListener('click', function(){
-        if (playGame.style.display === 'none') {
-            playGame.style.display = 'flex';
-        } else {
-            playGame.style.display = 'none';
-        }
-        if (menuContainer.style.display === 'flex'){
-            menuContainer.style.display = 'none';
-        } else {
-            menuContainer.style.display = 'flex';
-        }
-        if (zombie.style.display === 'none') {
-            menuContainer.style.display ='none'
-        } else {
-            zombie.style.display = 'block';
-        }
-    });
-    var objectImage = document.createElement("img");
-        objectImage.src = "souce/sprites/zombie.jpg"; 
+        startGame.addEventListener('click', function () {
+            if (playGame.style.display === 'none') {
+                playGame.style.display = 'flex';
+            } else {
+                playGame.style.display = 'none';
+            }
+            if (menuContainer.style.display === 'flex') {
+                menuContainer.style.display = 'none';
+            } else {
+                menuContainer.style.display = 'flex';
+            }
+            if (zombie.style.display === 'none') {
+                menuContainer.style.display = 'none'
+            } else {
+                zombie.style.display = 'block';
+            }
+        });
+        var objectImage = document.createElement("img");
+        objectImage.src = "souce/sprites/zombie.jpg";
         objectImage.style.width = "100px"; // Sesuaikan lebar gambar
         objectImage.style.height = "100px"; // Sesuaikan tinggi gambar
 
-        gameContainer.appendChild(objectImage);  
+        gameContainer.appendChild(objectImage);
 
-    
-  </script>
+
+    </script>
     </script>
 </body>
 
