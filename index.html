@@ -6,49 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
-            background-image: url(/Example/Example\ Play\ 01.jpg);
-            background-repeat: no-repeat;
-        }
-
         #container {
             width: 1000px;
             height: 600px;
-            background-image: url(/Example/Example\ Play\ 01.jpg);
-            background-repeat: no-repeat;
+            background-color: #662F10;
             height: 100vh;
             justify-content: center;
+            flex-direction: column;
             align-items: center;
             display: flex;
         }
         
         #begin-game {
             display: flex;
-            flex-direction: row; /* Tambahkan properti flex-direction untuk mengatur tata letak secara horizontal */
-            align-items: center; /* Tambahkan properti align-items untuk mengatur tata letak vertikal menjadi tengah */
+            flex-direction: column;
         }
 
-        #begin-game #username {
-            margin-right: 10px; /* Tambahkan margin kanan untuk memberikan jarak antara input */
-        }
+        
     </style>
 </head>
 
 <body>
     <div id="container">
+        <img src="/Sprites/General/logo.png" alt="LKS-plantvszombie">
         <div id="begin-game">
-            <input type="text" id="username"></input>
-            <input id="level">
-            <select name="choose-dificult" id="dificult">
+            <input type="text" placeholder="Input Username" id="username"></input>
+            <input placeholder="Select Level" id="level">
+            <select name="choose-dificult"  id="dificult">
                 <option value="easy">easy</option>
                 <option value="normal">normal</option>
                 <option value="hard">hard</option>
             </select>
             </input>
-            <button id="play">Play-game</button>
-            <button id="instruction" onclick="openInstruction()">instruction</button>
+            <button id="play" onclick="startGame()">Play-game</button>
+            <button id="toggleButton">Instruction</button>
+            <div id="instructionButton" style="display: none;">
+                <h2>How to play game</h1>
+                    <p>1.Input Username</p>
+                    <p>2.Take the sun to choose the plant card</p>
+                    <p>3.Put a plant cards into the field to fight zombies</p>
+                    <p>4.Don't let zombies pass through the yard</p>
+                    <p>enjoy</p>
+            </div>
         </div>
     </div>
+    <div id="play-game">
+        <button></button>
+    </div>
+    <script>
+    var toggleButton = document.getElementById('toggleButton');
+    var instructionButton = document.getElementById('instructionButton');
+
+    toggleButton.addEventListener('click', function() {
+      if (instructionButton.style.display === 'none') {
+        // Show the div element
+        instructionButton.style.display = 'block';
+      } else {
+        // Hide the div element
+        instructionButton.style.display = 'none';
+      }
+    });
+  </script>
+    </script>
 </body>
 
 </html>
