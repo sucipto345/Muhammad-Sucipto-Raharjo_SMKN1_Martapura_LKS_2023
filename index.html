@@ -37,7 +37,8 @@
             z-index: 999;
             display: flex;
             gap: 10px;
-            float: left;
+            left: -1100px;
+            position: relative;
         }
         .card {
             width: 100px;
@@ -66,7 +67,7 @@
                     <p>2.Take the sun to choose the plant card</p>
                     <p>3.Put a plant cards into the field to fight zombies</p>
                     <p>4.Don't let zombies pass through the yard</p>
-                    <p>enjoy</p>
+                    <p>5.enjoy</p>
             </div>
         </div>
     </div>
@@ -79,14 +80,12 @@
             <img src="/souce/Sprites/Seeds/WallNutSeed.png" class="card" draggable="true">
         </div>
         <div id="boxesContainer">
-            <!-- Boxes will be dynamically generated here -->
+            <div id="info-player">
+                <div id="player"></div>
+                <div id="timer"></div>
+                <div id="point"></div>
+            </div>
         </div>
-        <div id="info-player">
-            <div id="player"></div>
-            <div id="timer"></div>
-            <div id="point"></div>
-        </div>
-        <div id="zombie" style="display: none;"></div>
     </div>
     <script>
         var toggleButton = document.getElementById('toggleButton');
@@ -116,21 +115,7 @@
             } else {
                 menuContainer.style.display = 'flex';
             }
-            if (zombie.style.display === 'none') {
-                menuContainer.style.display = 'none'
-            } else {
-                zombie.style.display = 'block';
-            }
         });
-        var objectImage = document.createElement("img");
-        objectImage.src = "souce/sprites/zombie.jpg";
-        objectImage.style.width = "100px"; // Sesuaikan lebar gambar
-        objectImage.style.height = "100px"; // Sesuaikan tinggi gambar
-
-        gameContainer.appendChild(objectImage);
-
-
-    </script>
     </script>
 </body>
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermark Example</title>
+    <style>
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 15%;
+            left: 90%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="image" src="/IMG/image2.jpg" alt="Your Image">
+        <div class="watermark"><img src="/IMG/logo.png" alt="logo"></div>
+    </div>
+</body>
+</html>

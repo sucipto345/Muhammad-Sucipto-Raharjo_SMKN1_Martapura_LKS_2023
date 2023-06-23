@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Splitter</title>
+  <style>
+    #container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    #image {
+      max-width: 100%;
+      max-height: 400px;
+      margin-bottom: 20px;
+    }
+    
+    .card {
+      position: absolute;
+      cursor: pointer;
+    }
+    
+    .input-container {
+      margin-bottom: 10px;
+    }
+    @keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="image" src="/IMG/image.jpg" alt="Image">
+  </div>
+  <div class="input-container">
+    <label for="rows">Number of Rows (X):</label>
+    <input id="rows" type="number" min="1" max="10">
+  </div>
+  <div class="input-container">
+    <label for="columns">Number of Columns (Y):</label>
+    <input id="columns" type="number" min="1" max="10">
+  </div>
+  <button onclick="splitImage()">Split Image</button>
+  
+  <script>
+    var image = document.getElementById("image");
+var container = document.getElementById("container");
+
+function splitImage() {
+  var X = parseInt(document.getElementById("rows").value);
+  var Y = parseInt(document.getElementById("columns").value);
+  
+  if (isNaN(X) || X < 1 || X > 10) {
+    alert("Please enter a valid number of rows (1-10).");
+    return;
+  }
+  
+  if (isNaN(Y) || Y < 1 || Y > 10) {
+    alert("Please enter a valid number of columns (1-10).");
+    return;
+  }
+  
+  var cardWidth = Math.floor(image.width / Y);  
+  var cardHeight = Math.floor(image.height / X); 
+  
+  
+  container.innerHTML = "";
+  
+  for (var i = 0; i < X; i++) {
+    for (var j = 0; j < Y; j++) {
+      var card = document.createElement("img");
+      card.className = "card";
+      card.src = image.src;
+      card.style.width = cardWidth + "px";
+      card.style.height = cardHeight + "px";
+      card.style.objectFit = "none";
+      card.style.border= "1px solid yellow"
+      card.style.objectPosition = -j * cardWidth + "px " + -i * cardHeight + "px";
+      card.style.left = j * cardWidth + "px";
+      card.style.top = i * cardHeight + "px";
+      card.addEventListener("click", function() {
+        this.style.animation = "fade-out 0.5s";
+        var cardElement = this;
+        setTimeout(function() {
+          cardElement.remove();
+        }, 500);
+      });
+      
+      container.appendChild(card);
+    }
+  }
+}
+
+  </script>
+</body>
+</html>
