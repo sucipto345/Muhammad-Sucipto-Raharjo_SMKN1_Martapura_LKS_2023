@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-image: url(/Example/Example\ Play\ 01.jpg);
+            background-repeat: no-repeat;
+        }
+
+        #container {
+            width: 1000px;
+            height: 600px;
+            background-image: url(/Example/Example\ Play\ 01.jpg);
+            background-repeat: no-repeat;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        
+        #begin-game {
+            display: flex;
+            flex-direction: row; /* Tambahkan properti flex-direction untuk mengatur tata letak secara horizontal */
+            align-items: center; /* Tambahkan properti align-items untuk mengatur tata letak vertikal menjadi tengah */
+        }
+
+        #begin-game #username {
+            margin-right: 10px; /* Tambahkan margin kanan untuk memberikan jarak antara input */
+        }
+    </style>
 </head>
+
 <body>
-    <div id="">
-        <input type="text" id="username"></input>
-        <input id="level">
-        <select name="choose-dificult" id="dificult">    <option value="easy">easy</option>
-        <option value="normal">normal</option>
-        <option value="hard">hard</option></select>
-    </input>
+    <div id="container">
+        <div id="begin-game">
+            <input type="text" id="username"></input>
+            <input id="level">
+            <select name="choose-dificult" id="dificult">
+                <option value="easy">easy</option>
+                <option value="normal">normal</option>
+                <option value="hard">hard</option>
+            </select>
+            </input>
+            <button id="play">Play-game</button>
+            <button id="instruction" onclick="openInstruction()">instruction</button>
+        </div>
     </div>
 </body>
+
 </html>
