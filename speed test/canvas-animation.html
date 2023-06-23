@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 400px;
+            height: 320px;
+            border: 1px solid black;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <canvas id="canvas" width="400" height="320"></canvas>
+    </div>
+    <script>
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+var x = 0;
+var radius = 5;
+
+function drawCircularFigure() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+  context.beginPath();
+  context.arc(x, canvas.height / 2, radius, 0, 2 * Math.PI);
+  context.fillStyle = "white";
+  context.fill();
+  context.closePath();
+
+
+  x += 1;
+  if (x > canvas.width + radius) {
+    x = -radius;
+  }
+
+  requestAnimationFrame(drawCircularFigure);
+}
+
+drawCircularFigure();
+    </script>
+</body>
+</html>

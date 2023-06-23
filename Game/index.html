@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #container {
+  background-color: #662f10;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#begin-game {
+  display: flex;
+  flex-direction: column;
+}
+
+#play-game {
+  background-image: url("source/Sprites/General/Background.jpg");
+  display: none;
+  height: 600px;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  position: absolute;
+  width: -webkit-fill-available;
+  height: auto;
+}
+#instructionButton{
+  color: white;
+}
+
+#play-game button {
+  height: 70px;
+  padding-bottom: 15px;
+  margin-left: 5px;
+}
+
+.game-ui {
+  position: absolute;
+  top: 0;
+}
+.cards {
+  z-index: 999;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  top: 10px;
+  left: 250px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+}
+
+#boxesContainer {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0px;
+  top: 50px;
+  left: 100px;
+  position: relative;
+}
+
+.box {
+  width: 102px;
+  height: 106px;
+  border: 1px solid #ccc;
+}
+
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <img src="source/Sprites/General/logo.png" alt="LKS-plantvszombie" />
+      <div id="begin-game">
+        <input type="text" placeholder="Input Username" id="username" />
+        <input placeholder="Select Level" id="level" /></input>
+        <select name="choose-dificult" id="difficulty">
+          <option value="easy">easy</option>
+          <option value="normal">normal</option>
+          <option value="hard">hard</option>
+        </select>
+        <button id="play">Play game</button>
+        <button id="toggleButton">Instruction</button>
+        <div id="instructionButton" style="display: none">
+          <h2>How to play game</h2>
+          <p>1. Input Username</p>
+          <p>2. Take the sun to choose the plant card</p>
+          <p>3. Put plant cards into the field to fight zombies</p>
+          <p>4. Don't let zombies pass through the yard</p>
+          <p>5. Enjoy</p>
+        </div>
+      </div>
+    </div>
+    <div id="play-game" style="display: none">
+      <canvas id="gameCanvas"></canvas>
+      <div class="game-ui">
+        <div class="cards">
+          <img
+            src="source/Sprites/Seeds/SunFlowerSeed.png"
+            class="card"
+            draggable="true"
+          />
+          <img
+            src="source/Sprites/Seeds/PeaShooterSeed.png"
+            class="card"
+            draggable="true"
+          />
+          <img
+            src="source/Sprites/Seeds/IcePeaSeed.png"
+            class="card"
+            draggable="true"
+          />
+          <img
+            src="source/Sprites/Seeds/WallNutSeed.png"
+            class="card"
+            draggable="true"
+          />
+        </div>
+        <div id="boxesContainer"></div>
+      </div>
+    </div>
+    <script>
+      var toggleButton = document.getElementById("toggleButton");
+      var instructionButton = document.getElementById("instructionButton");
+      var startGame = document.getElementById("play");
+      var playGame = document.getElementById("play-game");
+      var menuContainer = document.getElementById("container");
+
+      toggleButton.addEventListener("click", function () {
+        if (instructionButton.style.display === "none") {
+          instructionButton.style.display = "block";
+        } else {
+          instructionButton.style.display = "none";
+        }
+      });
+
+      startGame.addEventListener("click", function () {
+        if (playGame.style.display === "none") {
+          playGame.style.display = "flex";
+          menuContainer.style.display = "none";
+        } else {
+          playGame.style.display = "none";
+          menuContainer.style.display = "flex";
+        }
+      });
+
+      const canvas = document.getElementById("gameCanvas");
+      const context = canvas.getContext("2d");
+      const cards = document.querySelectorAll(".card");
+      const boxesContainer = document.getElementById("boxesContainer");
+      let draggedImage = null;
+
+      function handleDragStart(event) {
+        draggedImage = event.target;
+        event.dataTransfer.setData("text/plain", ""); 
+      }
+
+      function handleDragOver(event) {
+        event.preventDefault();
+      }
+
+
+      function handleDrop(event) {
+        event.preventDefault();
+
+        const box = event.target;
+        box.appendChild(draggedImage.cloneNode(true)); 
+      }
+
+      function createBoxes(rows, cols) {
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            const box = document.createElement("div");
+            box.classList.add("box");
+            box.addEventListener("dragover", handleDragOver);
+            box.addEventListener("drop", handleDrop);
+            boxesContainer.appendChild(box);
+          }
+        }
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener("dragstart", handleDragStart);
+      });
+
+      createBoxes(5, 8);
+    </script>
+  </body>
+</html>
