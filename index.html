@@ -31,6 +31,12 @@
             padding-bottom: 15px;
             margin-left: 5px;
         }
+        #zombie{
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            animation: move-left;
+        }
     </style>
 </head>
 
@@ -66,10 +72,12 @@
             <button id="wallNut"><img src="/souce/Sprites/Seeds/WallNutSeed.png" alt="WallNutSeed"></button>
             <button id="shovel"><img src="/souce/Sprites/General/Shovel.png" alt="shovel"></button>
         </div>
-        <div>
-            <div></div>
+        <div id="info-player">
+            <div id="player"></div>
             <div id="timer"></div>
+            <div id="point"></div>
         </div>
+        <div id="zombie" style="display: none;"></div>
     </div>
     <script>
     var toggleButton = document.getElementById('toggleButton');
@@ -77,6 +85,7 @@
     var startGame = document.getElementById('play')
     var playGame = document.getElementById('play-game')
     var menuContainer = document.getElementById('container')
+    var zombie = document.getElementById('zombie')
 
 
     toggleButton.addEventListener('click', function() {
@@ -98,8 +107,20 @@
         } else {
             menuContainer.style.display = 'flex';
         }
+        if (zombie.style.display === 'none') {
+            menuContainer.style.display ='none'
+        } else {
+            zombie.style.display = 'block';
+        }
     });
+    var objectImage = document.createElement("img");
+        objectImage.src = "souce/sprites/zombie.jpg"; 
+        objectImage.style.width = "100px"; // Sesuaikan lebar gambar
+        objectImage.style.height = "100px"; // Sesuaikan tinggi gambar
 
+        gameContainer.appendChild(objectImage);  
+
+    
   </script>
     </script>
 </body>
