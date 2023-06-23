@@ -7,14 +7,12 @@
     <title>Document</title>
     <style>
         #container {
-            width: 1000px;
             height: 600px;
             background-color: #662F10;
             height: 100vh;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            display: flex;
         }
         
         #begin-game {
@@ -22,12 +20,22 @@
             flex-direction: column;
         }
 
-        
+        #play-game {
+            background-image: url(/Sprites/General/Background.jpg);
+            display: none;
+            height: 600px;
+            background-repeat: no-repeat;
+        }
+        #play-game button{
+            height: 70px;
+            padding-bottom: 15px;
+            margin-left: 5px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="container">
+    <div id="container" style="display: flex;">
         <img src="/Sprites/General/logo.png" alt="LKS-plantvszombie">
         <div id="begin-game">
             <input type="text" placeholder="Input Username" id="username"></input>
@@ -38,7 +46,7 @@
                 <option value="hard">hard</option>
             </select>
             </input>
-            <button id="play" onclick="startGame()">Play-game</button>
+            <button id="play">Play game</button>
             <button id="toggleButton">Instruction</button>
             <div id="instructionButton" style="display: none;">
                 <h2>How to play game</h1>
@@ -50,22 +58,42 @@
             </div>
         </div>
     </div>
-    <div id="play-game">
-        <button></button>
+    <div id="play-game" style="display: none;">
+        <button><img src="/Sprites/Seeds/SunFlowerSeed.png" alt="SunFlowerSeed"></button>
+        <button><img src="/Sprites/Seeds/PeaShooterSeed.png" alt="PeaShooterSeed"></button>
+        <button><img src="/Sprites/Seeds/IcePeaSeed.png" alt="IcePeaSeed"></button>
+        <button><img src="/Sprites/Seeds/WallNutSeed.png" alt="WallNutSeed"></button>
+        <button><img src="/" alt=""></button>
     </div>
     <script>
     var toggleButton = document.getElementById('toggleButton');
     var instructionButton = document.getElementById('instructionButton');
+    var startGame = document.getElementById('play')
+    var playGame = document.getElementById('play-game')
+    var menuContainer = document.getElementById('container')
+
 
     toggleButton.addEventListener('click', function() {
       if (instructionButton.style.display === 'none') {
-        // Show the div element
-        instructionButton.style.display = 'block';
+        instructionButton.style.display = 'flex';
       } else {
-        // Hide the div element
         instructionButton.style.display = 'none';
       }
     });
+
+    startGame.addEventListener('click', function(){
+        if (playGame.style.display === 'none') {
+            playGame.style.display = 'flex';
+        } else {
+            playGame.style.display = 'none';
+        }
+        if (menuContainer.style.display === 'flex'){
+            menuContainer.style.display = 'none';
+        } else {
+            menuContainer.style.display = 'flex';
+        }
+    });
+
   </script>
     </script>
 </body>
