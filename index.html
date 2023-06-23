@@ -21,7 +21,7 @@
         }
 
         #play-game {
-            background-image: url(/Sprites/General/Background.jpg);
+            background-image: url(/souce/Sprites/General/Background.jpg);
             display: none;
             height: 600px;
             background-repeat: no-repeat;
@@ -36,7 +36,7 @@
 
 <body>
     <div id="container" style="display: flex;">
-        <img src="/Sprites/General/logo.png" alt="LKS-plantvszombie">
+        <img src="/souce/Sprites/General/logo.png" alt="LKS-plantvszombie">
         <div id="begin-game">
             <input type="text" placeholder="Input Username" id="username"></input>
             <input placeholder="Select Level" id="level">
@@ -60,11 +60,15 @@
     </div>
     <div id="play-game" style="display: none;">
         <div id="button-container">
-            <button><img src="/Sprites/Seeds/SunFlowerSeed.png" alt="SunFlowerSeed"></button>
-            <button><img src="/Sprites/Seeds/PeaShooterSeed.png" alt="PeaShooterSeed"></button>
-            <button><img src="/Sprites/Seeds/IcePeaSeed.png" alt="IcePeaSeed"></button>
-            <button><img src="/Sprites/Seeds/WallNutSeed.png" alt="WallNutSeed"></button>
-            <button><img src="/Sprites/General/Shovel.png" alt="shovel"></button>
+            <button id="sunFlower"><img src="/souce/Sprites/Seeds/SunFlowerSeed.png" alt="SunFlowerSeed"></button>
+            <button id="peaShoter"><img src="/souce/Sprites/Seeds/PeaShooterSeed.png" alt="PeaShooterSeed"></button>
+            <button id="icePea"><img src="/souce/Sprites/Seeds/IcePeaSeed.png" alt="IcePeaSeed"></button>
+            <button id="wallNut"><img src="/souce/Sprites/Seeds/WallNutSeed.png" alt="WallNutSeed"></button>
+            <button id="shovel"><img src="/souce/Sprites/General/Shovel.png" alt="shovel"></button>
+        </div>
+        <div>
+            <div></div>
+            <div id="timer"></div>
         </div>
     </div>
     <script>
